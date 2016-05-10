@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Field type:</strong>
+  <%= @form_field.field_type %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @form_field.name %>
+</p>
+
+<p>
+  <strong>Form template:</strong>
+  <%= @form_field.form_template_id %>
+</p>
+
+<p>
+  <strong>Is mandatory:</strong>
+  <%= @form_field.is_mandatory %>
+</p>
+
+<p>
+  <strong>Default:</strong>
+  <%= @form_field.default %>
+</p>
+
+<%= link_to 'Edit', edit_form_field_path(@form_field) %> |
+<%= link_to 'Back', form_fields_path %>

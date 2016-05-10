@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student application:</strong>
+  <%= @form_field_input.student_application_id %>
+</p>
+
+<p>
+  <strong>Form field:</strong>
+  <%= @form_field_input.form_field_id %>
+</p>
+
+<p>
+  <strong>Input:</strong>
+  <%= @form_field_input.input %>
+</p>
+
+<%= link_to 'Edit', edit_form_field_input_path(@form_field_input) %> |
+<%= link_to 'Back', form_field_inputs_path %>

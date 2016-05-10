@@ -1,0 +1,37 @@
+<%= form_for(@form_field) do |f| %>
+  <% if @form_field.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@form_field.errors.count, "error") %> prohibited this form_field from being saved:</h2>
+
+      <ul>
+      <% @form_field.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :field_type %><br>
+    <%= f.text_field :field_type %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :form_template_id %><br>
+    <%= f.number_field :form_template_id %>
+  </div>
+  <div class="field">
+    <%= f.label :is_mandatory %><br>
+    <%= f.check_box :is_mandatory %>
+  </div>
+  <div class="field">
+    <%= f.label :default %><br>
+    <%= f.text_field :default %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

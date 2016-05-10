@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Application Processes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Semester</th>
+      <th>Year</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Form template</th>
+      <th>Letter template</th>
+      <th>Total letters</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @application_processes.each do |application_process| %>
+      <tr>
+        <td><%= application_process.name %></td>
+        <td><%= application_process.semester %></td>
+        <td><%= application_process.year %></td>
+        <td><%= application_process.start_date %></td>
+        <td><%= application_process.end_date %></td>
+        <td><%= application_process.form_template.name %></td>
+        <td><%= application_process.letter_template.name %></td>
+        <td><%= application_process.total_letters %></td>
+        <td><%= link_to 'Show', application_process %></td>
+        <td><%= link_to 'Edit', edit_application_process_path(application_process) %></td>
+        <td><%= link_to 'Destroy', application_process, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Application process', new_application_process_path %>

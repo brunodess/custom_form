@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Student Applications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student name</th>
+      <th>Application process</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @student_applications.each do |student_application| %>
+      <tr>
+        <td><%= student_application.student_name %></td>
+        <td><%= student_application.application_process_id %></td>
+        <td><%= link_to 'Show', student_application %></td>
+        <td><%= link_to 'Edit', edit_student_application_path(student_application) %></td>
+        <td><%= link_to 'Destroy', student_application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Student application', new_student_application_path %>

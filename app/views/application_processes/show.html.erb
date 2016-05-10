@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @application_process.name %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @application_process.semester %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @application_process.year %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @application_process.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @application_process.end_date %>
+</p>
+
+<p>
+  <strong>Form template:</strong>
+  <%= @application_process.form_template.name%>
+</p>
+
+<p>
+  <strong>Letter template:</strong>
+  <%= @application_process.letter_template.name %>
+</p>
+
+<p>
+  <strong>Total letters:</strong>
+  <%= @application_process.total_letters %>
+</p>
+
+<%= link_to 'Edit', edit_application_process_path(@application_process) %> |
+<%= link_to 'Back', application_processes_path %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Letter Field Inputs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Letter request</th>
+      <th>Form field</th>
+      <th>Input</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @letter_field_inputs.each do |letter_field_input| %>
+      <tr>
+        <td><%= letter_field_input.letter_request_id %></td>
+        <td><%= letter_field_input.form_field_id %></td>
+        <td><%= letter_field_input.input %></td>
+        <td><%= link_to 'Show', letter_field_input %></td>
+        <td><%= link_to 'Edit', edit_letter_field_input_path(letter_field_input) %></td>
+        <td><%= link_to 'Destroy', letter_field_input, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Letter field input', new_letter_field_input_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Letter request:</strong>
+  <%= @letter_field_input.letter_request_id %>
+</p>
+
+<p>
+  <strong>Form field:</strong>
+  <%= @letter_field_input.form_field_id %>
+</p>
+
+<p>
+  <strong>Input:</strong>
+  <%= @letter_field_input.input %>
+</p>
+
+<%= link_to 'Edit', edit_letter_field_input_path(@letter_field_input) %> |
+<%= link_to 'Back', letter_field_inputs_path %>

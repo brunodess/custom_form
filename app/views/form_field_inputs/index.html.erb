@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Form Field Inputs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student application</th>
+      <th>Form field</th>
+      <th>Input</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @form_field_inputs.each do |form_field_input| %>
+      <tr>
+        <td><%= form_field_input.student_application_id %></td>
+        <td><%= form_field_input.form_field_id %></td>
+        <td><%= form_field_input.input %></td>
+        <td><%= link_to 'Show', form_field_input %></td>
+        <td><%= link_to 'Edit', edit_form_field_input_path(form_field_input) %></td>
+        <td><%= link_to 'Destroy', form_field_input, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Form field input', new_form_field_input_path %>

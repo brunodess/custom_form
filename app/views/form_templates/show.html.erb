@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @form_template.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @form_template.description %>
+</p>
+
+<p>
+  <strong>Is letter:</strong>
+  <%= @form_template.is_letter %>
+</p>
+
+<%= link_to 'Edit', edit_form_template_path(@form_template) %> |
+<%= link_to 'Back', form_templates_path %>

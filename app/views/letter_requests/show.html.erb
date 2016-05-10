@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Professor email:</strong>
+  <%= @letter_request.professor_email %>
+</p>
+
+<p>
+  <strong>Student application:</strong>
+  <%= @letter_request.student_application_id %>
+</p>
+
+<p>
+  <strong>Access code:</strong>
+  <%= @letter_request.access_code %>
+</p>
+
+<%= link_to 'Edit', edit_letter_request_path(@letter_request) %> |
+<%= link_to 'Back', letter_requests_path %>
