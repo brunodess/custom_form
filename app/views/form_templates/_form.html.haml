@@ -1,0 +1,18 @@
+= simple_form_for @form_template do |f|
+  = f.input :name
+  = f.input :description
+  = f.input :is_letter
+
+  %h3 Campos do Formulário:
+  #fields
+    = f.simple_fields_for :form_fields do |text_field|
+      = render 'text_fields', f:text_field
+    = f.simple_fields_for :form_fields do |select_field|
+      = render 'select_fields', f:select_field
+
+    .links
+      = link_to_add_association 'Adicionar campo texto', f, :form_fields, partial: 'text_fields'
+    .links
+      = link_to_add_association 'Adicionar seleção', f, :form_fields, partial: 'select_fields'
+
+  = f.submit

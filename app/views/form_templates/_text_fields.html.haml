@@ -1,0 +1,6 @@
+.nested-fields
+  = f.input :name
+  = f.input :field_type, as: :hidden, input_html: { value: 'text' }
+  = f.input :is_mandatory
+  = f.input :default
+  = link_to_remove_association 'Remover', f
