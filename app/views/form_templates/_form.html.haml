@@ -4,15 +4,19 @@
   = f.input :is_letter
 
   %h3 Campos do Formulário:
-  #fields
-    = f.simple_fields_for :form_fields do |text_field|
-      = render 'text_fields', f:text_field
-    = f.simple_fields_for :form_fields do |select_field|
-      = render 'select_fields', f:select_field
-
+  #form-container
     .links
-      = link_to_add_association 'Adicionar campo texto', f, :form_fields, partial: 'text_fields'
+      = link_to_add_association 'Adicionar campo texto', f, :form_fields, partial: 'form_fields',
+                                  render_options: {locals: { type: 'text' }},
+                                  'data-association-insertion-method' => 'append',
+                                  'data-association-insertion-node' => '#fields'
     .links
-      = link_to_add_association 'Adicionar seleção', f, :form_fields, partial: 'select_fields'
+      = link_to_add_association 'Adicionar seleção', f, :form_fields, partial: 'form_fields',
+                                  render_options: {locals: { type: 'select' }},
+                                  'data-association-insertion-method' => 'append',
+                                  'data-association-insertion-node' => '#fields'
+    #fields
+      = f.simple_fields_for :form_fields do |field|
+        = render 'form_fields', f:field, type: field.object.field_type
 
   = f.submit
