@@ -8,6 +8,16 @@ class FormField < ActiveRecord::Base
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
+  validates :name, presence: true
+
+  def accept_mandatory? (t)
+    if ['text', 'select', 'radio'].include? t
+      true
+    else
+      false
+    end
+  end
+
   def allow_form_values? (t)
     if ['select', 'radio'].include? t
       true

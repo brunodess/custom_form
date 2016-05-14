@@ -11,8 +11,18 @@
                                   'data-association-insertion-method' => 'append',
                                   'data-association-insertion-node' => '#fields'
     .links
-      = link_to_add_association 'Adicionar seleção', f, :form_fields, partial: 'form_fields',
+      = link_to_add_association 'Adicionar menu de seleção', f, :form_fields, partial: 'form_fields',
                                   render_options: {locals: { type: 'select' }},
+                                  'data-association-insertion-method' => 'append',
+                                  'data-association-insertion-node' => '#fields'
+    .links
+      = link_to_add_association 'Adicionar seletor radio', f, :form_fields, partial: 'form_fields',
+                                  render_options: {locals: { type: 'radio' }},
+                                  'data-association-insertion-method' => 'append',
+                                  'data-association-insertion-node' => '#fields'
+    .links
+      = link_to_add_association 'Adicionar checkbox', f, :form_fields, partial: 'form_fields',
+                                  render_options: {locals: { type: 'checkbox' }},
                                   'data-association-insertion-method' => 'append',
                                   'data-association-insertion-node' => '#fields'
     #fields
