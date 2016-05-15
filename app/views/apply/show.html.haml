@@ -1,0 +1,12 @@
+= simple_form_for :form_field_inputs do |form|
+  - @application_fields.each do |field|
+    = simple_fields_for :form_field_inputs do |f|
+      - if field.field_type == 'select'
+        = f.input :value, as: :select
+      - elsif field.field_type == 'radio'
+        = f.input :value, as: :radio_buttons
+      - elsif field.field_type == 'checkbox'
+        = f.input :value, as: :check_boxes
+      - else
+        = f.input :value, as: :string
+  = form.submit
