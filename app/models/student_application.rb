@@ -5,4 +5,6 @@ class StudentApplication < ActiveRecord::Base
 
   accepts_nested_attributes_for :form_field_inputs,
                                 allow_destroy: true
+  accepts_nested_attributes_for :letter_requests,
+                                allow_destroy: true
 end
