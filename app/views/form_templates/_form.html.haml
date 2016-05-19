@@ -21,12 +21,16 @@
                                   'data-association-insertion-method' => 'append',
                                   'data-association-insertion-node' => '#fields'
     .links
-      = link_to_add_association 'Adicionar M&ucuteltiplas seleço', f, :form_fields, partial: 'form_fields',
+      = link_to_add_association 'Adicionar Múltiplas Opções', f, :form_fields, partial: 'form_fields',
                                   render_options: {locals: { type: 'collection_checkbox' }},
+                                  'data-association-insertion-method' => 'append',
+                                  'data-association-insertion-node' => '#fields'
+    .links
+      = link_to_add_association 'Adicionar Opção Única', f, :form_fields, partial: 'form_fields',
+                                  render_options: {locals: { type: 'single_checkbox' }},
                                   'data-association-insertion-method' => 'append',
                                   'data-association-insertion-node' => '#fields'
     #fields
       = f.simple_fields_for :form_fields do |field|
         = render 'form_fields', f:field, type: field.object.field_type
-
   = f.submit

@@ -13,9 +13,10 @@
       - elsif f.object.form_field.field_type == 'single_checkbox'
         = f.input :input, label: f.object.form_field.name, as: :boolean, checked_value: true, unchecked_value: false
       - elsif f.object.form_field.field_type == 'collection_checkbox'
-        = f.input :input, label: f.object.form_field.name, as: :check_boxes
+        = f.input :input, label: f.object.form_field.name, as: :check_boxes, collection: FormFieldValue.where(form_field_id: f.object.form_field.id ),
+                    :label_method => :value, :value_method => :value
       - else
-        = f.input :input,label: f.object.form_field.name, as: :string
+        = f.input :input, label: f.object.form_field.name, as: :string, required: f.object.form_field.is_mandatory?
 
   = form.submit
 
