@@ -19,7 +19,7 @@ class FormField < ActiveRecord::Base
   end
 
   def allow_form_values? (t)
-    if ['select', 'radio'].include? t
+    if ['select', 'radio', 'collection_checkbox'].include? t
       true
     else
       false

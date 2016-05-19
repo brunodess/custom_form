@@ -1,0 +1,4 @@
+= simple_form_for @student_application do |f|
+  = f.input :student_name
+  = f.association :application_process, as: :collection_select, include_blank: false
+  = f.submit

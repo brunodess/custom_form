@@ -69,6 +69,6 @@ class ApplicationProcessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_process_params
-      params.require(:application_process).permit(:name, :semester, :year, :start_date, :end_date, :form_template_id, :letter_template_id, :total_letters)
+      params.require(:application_process).permit(:name, :semester, :year, :start_date, :end_date, :form_template_id, :letter_template_id, :total_letters, student_applications_attributes: [:id, :name])
     end
 end

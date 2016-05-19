@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :form_templates
   resources :student_applications
   resources :application_processes
-  resources :apply
+  get 'apply'  => 'apply#index'
+  post 'apply'  => 'apply#create'
+  get 'apply/:application_process_id/new'  => 'apply#new', as: :apply_to
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -69,6 +69,9 @@ class FormTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def form_template_params
-      params.require(:form_template).permit(:name, :description, :is_letter, form_fields_attributes: [:id, :field_type, :name, :is_mandatory, :default, :_destroy, form_field_values_attributes: [:id, :is_default, :value, :_destroy]])
+      params.require(:form_template).permit(:name, :description, :is_letter,
+                                            form_fields_attributes: [:id, :field_type, :name, :is_mandatory, :default, :_destroy,
+                                                                     form_field_values_attributes: [:id, :is_default, :value, :_destroy]],
+                                            application_processes_attributes:[:name, :semester, :year, :start_date, :end_date, :total_letters])
     end
 end
