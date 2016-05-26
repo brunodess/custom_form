@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506192433) do
+ActiveRecord::Schema.define(version: 20160526205115) do
 
   create_table "application_processes", force: :cascade do |t|
     t.string   "name"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160506192433) do
     t.string   "access_code"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.boolean  "is_filled"
   end
 
   add_index "letter_requests", ["student_application_id"], name: "index_letter_requests_on_student_application_id"

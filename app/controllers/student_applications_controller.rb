@@ -28,6 +28,9 @@ class StudentApplicationsController < ApplicationController
 
     respond_to do |format|
       if @student_application.save
+        @student_application.letter_requests.each do |lr|
+          ApplyMailer.letter_request_mail(lr).deliver_later
+        end
         format.html { redirect_to @student_application, notice: 'Student application was successfully created.' }
         format.json { render :show, status: :created, location: @student_application }
       else
@@ -71,6 +74,6 @@ class StudentApplicationsController < ApplicationController
     def student_application_params
       params.require(:student_application).permit(:student_name, :application_process_id,
                                                   form_field_inputs_attributes:[:id, :form_field_id, :input, :_destroy],
-                                                  letter_requests_attributes:[:id, :professor_email, :student_application_id, :access_code, :_destroy])
+                                                  letter_requests_attributes:[:id, :professor_email, :student_application_id, :access_code, :is_filled, :_destroy])
     end
 end

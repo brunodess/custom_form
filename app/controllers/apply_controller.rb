@@ -1,5 +1,4 @@
 class ApplyController < ApplicationController
-  before_action :set_application_form, only: [:show, :edit, :update, :destroy]
 
   def index
     @application_process = ApplicationProcess.all
@@ -25,14 +24,6 @@ class ApplyController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_application_form
-    @application_process = ApplicationProcess.find(params[:id])
-    @application_form = FormTemplate.find(@application_process.form_template_id)
-    @application_fields = FormField.where(form_template_id: @application_form.id).find_each
-  end
 
-  def apply_params
-    params.permit(:student_name, :application_process_id,
-                                                form_field_inputs_attributes:[:id, :input, :form_field_id, :_destroy])
-  end
+
 end

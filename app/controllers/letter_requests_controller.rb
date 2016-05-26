@@ -21,6 +21,20 @@ class LetterRequestsController < ApplicationController
   def edit
   end
 
+  def fill
+    @letter_request = LetterRequest.find_by_access_code(params[:access_code])
+    if !@letter_request.is_filled?
+      @letter_fields = FormField.where(form_template_id: @letter_request.student_application.application_process.letter_template_id)
+
+      @letter_fields.each do |field|
+        @letter_request.letter_field_inputs.new(form_field_id: field.id)
+      end
+    else
+      redirect_to @letter_request, notice: 'Letter already filled.'
+    end
+
+  end
+
   # POST /letter_requests
   # POST /letter_requests.json
   def create
@@ -28,6 +42,7 @@ class LetterRequestsController < ApplicationController
 
     respond_to do |format|
       if @letter_request.save
+
         format.html { redirect_to @letter_request, notice: 'Letter request was successfully created.' }
         format.json { render :show, status: :created, location: @letter_request }
       else
@@ -69,6 +84,7 @@ class LetterRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def letter_request_params
-      params.require(:letter_request).permit(:professor_email, :student_application_id, :access_code)
+      params.require(:letter_request).permit(:professor_email, :student_application_id, :access_code, :is_filled,
+                                             letter_field_inputs_attributes: [:form_field_id, :input, :_destroy])
     end
 end

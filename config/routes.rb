@@ -1,3 +1,4 @@
+Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 Rails.application.routes.draw do
   resources :letter_field_inputs
   resources :letter_requests
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   get 'apply'  => 'apply#index'
   post 'apply'  => 'apply#create'
   get 'apply/:application_process_id/new'  => 'apply#new', as: :apply_to
+  get 'letter_requests/fill/:access_code'  => 'letter_requests#fill', as: :fill_letter
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
