@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :letter_field_inputs
   resources :letter_requests
   resources :form_field_inputs
+  resources :form_text_inputs
   resources :form_field_values
   resources :form_fields
   resources :form_templates

@@ -1,8 +1,10 @@
 class FormField < ActiveRecord::Base
   belongs_to :form_template
   has_many :form_field_inputs
+  has_many :form_text_inputs
   has_many :form_field_values
   has_many :letter_field_inputs
+  has_many :letter_text_inputs
 
   accepts_nested_attributes_for :form_field_values,
                                 reject_if: :all_blank,
@@ -11,7 +13,7 @@ class FormField < ActiveRecord::Base
   validates :name, presence: true
 
   def accept_mandatory? (t)
-    if ['text', 'select', 'radio'].include? t
+    if ['text', 'select', 'radio', 'string', 'file'].include? t
       true
     else
       false

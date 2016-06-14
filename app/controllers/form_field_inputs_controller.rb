@@ -5,6 +5,8 @@ class FormFieldInputsController < ApplicationController
   # GET /form_field_inputs.json
   def index
     @form_field_inputs = FormFieldInput.all
+    @form_text_inputs = FormTextInput.all
+
   end
 
   # GET /form_field_inputs/1

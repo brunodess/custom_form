@@ -6,8 +6,8 @@
   %h3 Campos do Formulário:
   #form-container
     .links
-      = link_to_add_association 'Adicionar campo texto', f, :form_fields, partial: 'form_fields',
-                                  render_options: {locals: { type: 'text' }},
+      = link_to_add_association 'Adicionar campo texto curto', f, :form_fields, partial: 'form_fields',
+                                  render_options: {locals: { type: 'string' }},
                                   'data-association-insertion-method' => 'append',
                                   'data-association-insertion-node' => '#fields'
     .links
@@ -29,6 +29,11 @@
       = link_to_add_association 'Adicionar Opção Única', f, :form_fields, partial: 'form_fields',
                                   render_options: {locals: { type: 'single_checkbox' }},
                                   'data-association-insertion-method' => 'append',
+                                  'data-association-insertion-node' => '#fields'
+    .links
+      = link_to_add_association 'Adicionar campo texto longo', f, :form_fields, partial: 'form_fields',
+                                  render_options: {locals: { type: 'text' }},
+                                  'data-association-insertion-method' => 'after',
                                   'data-association-insertion-node' => '#fields'
     #fields
       = f.simple_fields_for :form_fields do |field|

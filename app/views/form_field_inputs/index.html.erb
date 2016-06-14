@@ -5,26 +5,44 @@
 <table>
   <thead>
     <tr>
-      <th>Student application</th>
+      <th>Process </th>
+      <th>Student </th>
       <th>Form field</th>
+      <th>Field type</th>
       <th>Input</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @form_field_inputs.each do |form_field_input| %>
       <tr>
-        <td><%= form_field_input.student_application_id %></td>
-        <td><%= form_field_input.form_field_id %></td>
+        <% if StudentApplication.exists?(form_field_input.student_application_id) %>
+            <td><%= form_field_input.student_application.application_process.name %></td>
+            <td><%= form_field_input.student_application.student_name %></td>
+        <% else %>
+            <td> EXCLUIDO </td><td> EXCLUIDO </td>
+        <% end %>
+        <td><%= form_field_input.form_field.name %></td>
+        <td><%= form_field_input.form_field.field_type %></td>
         <td><%= form_field_input.input %></td>
-        <td><%= link_to 'Show', form_field_input %></td>
-        <td><%= link_to 'Edit', edit_form_field_input_path(form_field_input) %></td>
         <td><%= link_to 'Destroy', form_field_input, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <% @form_text_inputs.each do |form_text_inputs| %>
+      <tr>
+        <td><%= form_text_inputs.student_application.application_process.name %></td>
+        <td><%= form_text_inputs.student_application.student_name %></td>
+        <td><%= form_text_inputs.form_field.name %></td>
+        <td><%= form_text_inputs.form_field.field_type %></td>
+        <td><%= form_text_inputs.input %></td>
+        <td><%= link_to 'Destroy', form_text_inputs, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+
   </tbody>
 </table>
+
 
 <br>
 

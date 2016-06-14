@@ -8,12 +8,17 @@ class ApplyController < ApplicationController
     @application_process = ApplicationProcess.find(params[:application_process_id])
     @application_form = FormTemplate.find(@application_process.form_template_id)
     @application_letter = FormTemplate.find(@application_process.letter_template_id)
-    @application_fields = FormField.where(form_template_id: @application_form.id)
+    @application_fields = FormField.where(form_template_id: @application_form.id).where.not(field_type: 'text')
+    @application_texts = FormField.where(form_template_id: @application_form.id, field_type: 'text')
 
     @apply = StudentApplication.new
 
     @application_fields.each do |field|
       @apply.form_field_inputs.new(form_field_id: field.id)
+    end
+
+    @application_texts.each do |text|
+      @apply.form_text_inputs.new(form_field_id: text.id)
     end
 
     @application_process.total_letters.to_i.times do |x|

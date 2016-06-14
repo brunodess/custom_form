@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526205115) do
+ActiveRecord::Schema.define(version: 20160614010757) do
 
   create_table "application_processes", force: :cascade do |t|
     t.string   "name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160526205115) do
     t.string   "default"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.text     "description"
   end
 
   add_index "form_fields", ["form_template_id"], name: "index_form_fields_on_form_template_id"
@@ -69,6 +70,17 @@ ActiveRecord::Schema.define(version: 20160526205115) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "form_text_inputs", force: :cascade do |t|
+    t.integer  "student_application_id"
+    t.integer  "form_field_id"
+    t.text     "input"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "form_text_inputs", ["form_field_id"], name: "index_form_text_inputs_on_form_field_id"
+  add_index "form_text_inputs", ["student_application_id"], name: "index_form_text_inputs_on_student_application_id"
 
   create_table "letter_field_inputs", force: :cascade do |t|
     t.integer  "letter_request_id"
@@ -91,6 +103,17 @@ ActiveRecord::Schema.define(version: 20160526205115) do
   end
 
   add_index "letter_requests", ["student_application_id"], name: "index_letter_requests_on_student_application_id"
+
+  create_table "letter_text_inputs", force: :cascade do |t|
+    t.integer  "letter_request_id"
+    t.integer  "form_field_id"
+    t.text     "input"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "letter_text_inputs", ["form_field_id"], name: "index_letter_text_inputs_on_form_field_id"
+  add_index "letter_text_inputs", ["letter_request_id"], name: "index_letter_text_inputs_on_letter_request_id"
 
   create_table "student_applications", force: :cascade do |t|
     t.string   "student_name"

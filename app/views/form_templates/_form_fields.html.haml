@@ -1,5 +1,6 @@
 .nested-fields
   = f.input :name
+  = f.input :description
   = f.input :field_type, as: :hidden, input_html: { value: type }
   - if f.object.accept_mandatory? type
     = f.input :is_mandatory, checked_value: true, unchecked_value: false

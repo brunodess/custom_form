@@ -19,6 +19,10 @@
       - else
         = f.input :input, label: f.object.form_field.name, as: :string, required: f.object.form_field.is_mandatory?
 
+    = form.simple_fields_for :form_text_inputs do |f|
+      = f.input :form_field_id, as: :hidden, input_html: { value: f.object.form_field.id }
+      = f.input :input, label: f.object.form_field.name, as: :text, required: f.object.form_field.is_mandatory?
+
     = form.simple_fields_for :letter_requests do |f|
       = f.input :professor_email, required: true
       = f.input :access_code, as: :hidden, input_html: { value: f.object.generate_access_code }
