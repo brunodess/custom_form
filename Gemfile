@@ -37,6 +37,7 @@ gem 'rails-erd'
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'haml', '~> 4.0', '>= 4.0.7'
+gem 'carrierwave', '~> 0.11.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -6,6 +6,7 @@
     <%= f.input :end_date%>
     <%= f.association :form_template, :as => :collection_select, collection: FormTemplate.where('is_letter ==?', false), include_blank: false %>
     <%= f.association :letter_template, :as => :collection_select, collection: FormTemplate.where('is_letter ==?', true), include_blank: false  %>
-    <%= f.input :total_letters%>
+    <%= f.input :min_letters %>
+    <%= f.input :max_letters %>
     <%= f.button :submit %>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614010757) do
+ActiveRecord::Schema.define(version: 20160618192626) do
 
   create_table "application_processes", force: :cascade do |t|
     t.string   "name"
@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(version: 20160614010757) do
     t.date     "end_date"
     t.integer  "form_template_id"
     t.integer  "letter_template_id"
-    t.integer  "total_letters"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "max_letters"
+    t.integer  "min_letters"
   end
 
   add_index "application_processes", ["form_template_id"], name: "index_application_processes_on_form_template_id"
@@ -63,6 +64,17 @@ ActiveRecord::Schema.define(version: 20160614010757) do
 
   add_index "form_fields", ["form_template_id"], name: "index_form_fields_on_form_template_id"
 
+  create_table "form_file_uploads", force: :cascade do |t|
+    t.integer  "student_application_id"
+    t.integer  "form_field_id"
+    t.string   "file"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "form_file_uploads", ["form_field_id"], name: "index_form_file_uploads_on_form_field_id"
+  add_index "form_file_uploads", ["student_application_id"], name: "index_form_file_uploads_on_student_application_id"
+
   create_table "form_templates", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -92,6 +104,17 @@ ActiveRecord::Schema.define(version: 20160614010757) do
 
   add_index "letter_field_inputs", ["form_field_id"], name: "index_letter_field_inputs_on_form_field_id"
   add_index "letter_field_inputs", ["letter_request_id"], name: "index_letter_field_inputs_on_letter_request_id"
+
+  create_table "letter_file_uploads", force: :cascade do |t|
+    t.integer  "letter_request_id"
+    t.integer  "form_field_id"
+    t.string   "file"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "letter_file_uploads", ["form_field_id"], name: "index_letter_file_uploads_on_form_field_id"
+  add_index "letter_file_uploads", ["letter_request_id"], name: "index_letter_file_uploads_on_letter_request_id"
 
   create_table "letter_requests", force: :cascade do |t|
     t.string   "professor_email"

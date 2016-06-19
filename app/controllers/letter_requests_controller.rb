@@ -24,10 +24,20 @@ class LetterRequestsController < ApplicationController
   def fill
     @letter_request = LetterRequest.find_by_access_code(params[:access_code])
     if !@letter_request.is_filled?
-      @letter_fields = FormField.where(form_template_id: @letter_request.student_application.application_process.letter_template_id)
+      @letter_fields = FormField.where(form_template_id: @letter_request.student_application.application_process.letter_template_id).where.not(field_type: ['text', 'file'])
+      @letter_texts = FormField.where(form_template_id: @letter_request.student_application.application_process.letter_template_id, field_type: 'text' )
+      @letter_files = FormField.where(form_template_id: @letter_request.student_application.application_process.letter_template_id, field_type: 'file' )
 
       @letter_fields.each do |field|
         @letter_request.letter_field_inputs.new(form_field_id: field.id)
+      end
+
+      @letter_texts.each do |text|
+        @letter_request.letter_text_inputs.new(form_field_id: text.id)
+      end
+
+      @letter_files.each do |file|
+        @letter_request.letter_file_uploads.new(form_field_id: file.id)
       end
     else
       redirect_to @letter_request, notice: 'Letter already filled.'
@@ -85,6 +95,9 @@ class LetterRequestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def letter_request_params
       params.require(:letter_request).permit(:professor_email, :student_application_id, :access_code, :is_filled,
-                                             letter_field_inputs_attributes: [:form_field_id, :input, :_destroy])
+                                             letter_field_inputs_attributes: [:form_field_id, :input, :_destroy],
+                                             letter_text_inputs_attributes: [:id, :letter_request_id, :form_field_id, :input, :_destroy],
+                                             letter_file_uploads_attributes:[:id, :letter_request_id, :form_field_id, :file, :_destroy],
+      )
     end
 end

@@ -25,6 +25,9 @@ class StudentApplicationsController < ApplicationController
   # POST /student_applications.json
   def create
     @student_application = StudentApplication.new(student_application_params)
+    @student_application.letter_requests.each do |lr|
+      lr.class
+    end
 
     respond_to do |format|
       if @student_application.save
@@ -75,6 +78,8 @@ class StudentApplicationsController < ApplicationController
       params.require(:student_application).permit(:student_name, :application_process_id,
                                                   form_field_inputs_attributes:[:id, :form_field_id, :input, :_destroy],
                                                   form_text_inputs_attributes:[:id, :form_field_id, :input, :_destroy],
-                                                  letter_requests_attributes:[:id, :professor_email, :student_application_id, :access_code, :is_filled, :_destroy])
+                                                  form_file_uploads_attributes:[:id, :student_application_id, :form_field_id, :file, :_destroy],
+                                                  letter_requests_attributes:[:id, :professor_email, :student_application_id, :access_code, :is_filled, :_destroy]
+      )
     end
 end

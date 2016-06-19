@@ -36,8 +36,9 @@
 </p>
 
 <p>
-  <strong>Total letters:</strong>
-  <%= @application_process.total_letters %>
+  <strong>Min/Max letters:</strong>
+  <%= @application_process.min_letters %>/
+  <%= @application_process.max_letters %>
 </p>
 
 <%= link_to 'Edit', edit_application_process_path(@application_process) %> |
