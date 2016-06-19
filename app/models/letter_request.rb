@@ -6,8 +6,8 @@ class LetterRequest < ActiveRecord::Base
   has_many :letter_file_uploads, :dependent => :delete_all
   belongs_to :student_application
 
-  #validates :professor_email, :access_code, presence: true
-  #validates :access_code, uniqueness: true
+  validates :professor_email, :access_code, presence: true
+  validates :access_code, uniqueness: true
 
   accepts_nested_attributes_for :letter_field_inputs,
                                 allow_destroy: true
@@ -25,7 +25,9 @@ class LetterRequest < ActiveRecord::Base
   end
 
   def set_access_code
-    self.access_code = generate_access_code
+    if !self.access_code?
+      self.access_code = generate_access_code
+    end
   end
 
 end
