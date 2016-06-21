@@ -1,4 +1,4 @@
-class LetterTextInputsController
+class LetterTextInputsController < ApplicationController
   before_action :set_letter_text_input, only: [:destroy]
 
   def destroy
